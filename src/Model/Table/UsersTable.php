@@ -59,9 +59,9 @@ class UsersTable extends Table
             ->add('login', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->scalar('pass')
-            ->requirePresence('pass', 'create')
-            ->notEmpty('pass');
+            ->scalar('password')
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
 
         return $validator;
     }

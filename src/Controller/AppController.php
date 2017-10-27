@@ -47,12 +47,12 @@ class AppController extends Controller
             'authenticate' => [
                 'Form' => [
                     'fildes'=> [
-                        'username' => 'username',
+                        'username' => 'login',
                         'password' => 'password'
                         ]
                     ]
                 ],
-            'authorized' => ['controller'],
+            // 'authorized' => ['controller'],
             'loginRedirect' => [
             'controller' => 'Reserves', 'action' => 'index'
             ],
@@ -87,14 +87,9 @@ class AppController extends Controller
         }
     }
 
-    public function beforeFilter(Event $event){
+     public function beforeFilter(Event $event){
         $this->Auth->Allow(['index','view','display']);
     }
 
-    public function isAuthorized($user) {
-        if (isset($user['role']) && $user['role'] === 'admin') {
-            return true;
-        }
-        return false;
-    }
+
 }

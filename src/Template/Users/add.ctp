@@ -17,7 +17,7 @@
         <?php
             echo $this->Form->control('nome');
             echo $this->Form->control('login');
-            echo $this->Form->control('pass');
+            echo $this->Form->control('password');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -108,4 +109,42 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+public function beforeFilter(Event $event){
+        // parent::beforeFilter($event);
+        $this->Auth->Allow(['add','logout']);
+    }
+
+
+    public function login() {
+        if ($this->request->is('post')) {
+        $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+                }
+            $this->Flash->error(__('Usuário inválido, tente novamente'));
+            }
+        }
+
+    public function logout(){
+        return $this->redirect($this->Auth->logout());
+    }
+
+    public function isAuthorized($user) {
+        if ($this->request->action === 'add') {
+        return true;
+            }
+        if (in_array($this->request->action, ['edit', 'delete'])) {
+        $articleId = (int)$this->request->params['pass'][0];
+        if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+            return true;
+        }
+    }
+    return parent::isAuthorized($user);
+}
+
+
+
 }

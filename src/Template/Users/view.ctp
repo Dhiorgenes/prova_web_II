@@ -25,8 +25,8 @@
             <td><?= h($user->login) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Pass') ?></th>
-            <td><?= h($user->pass) ?></td>
+            <th scope="row"><?= __('Password') ?></th>
+            <td><?= h($user->password) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

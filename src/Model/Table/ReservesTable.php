@@ -33,6 +33,10 @@ class ReservesTable extends Table
         $this->setTable('reserves');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
+        $this->belongsTo('Users',['foreignKeys' => 'id_user']);
+        $this->belongsTo('Vehicles',['foreignKeys' => 'id_vehicle']);
     }
 
     /**
